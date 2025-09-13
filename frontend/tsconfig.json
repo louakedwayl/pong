@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es6",          // moderne et compatible navigateur
+    "module": "es6",          // modules JS natifs
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "strict": true,
+    "sourceMap": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
+

@@ -1,0 +1,15 @@
+FROM nginx:alpine
+
+# Copier la configuration Nginx
+COPY conf/default.conf /etc/nginx/conf.d/default.conf
+
+# Copier le build généré par le frontend
+# Ici, on suppose que tu feras un build externe ou via docker-compose
+COPY build/ /usr/share/nginx/html
+
+# Exposer le port choisi
+EXPOSE 4243
+
+# Lancer Nginx
+CMD ["nginx", "-g", "daemon off;"]
+
