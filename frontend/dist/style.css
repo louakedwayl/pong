@@ -1,0 +1,151 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Courier New", monospace;
+}
+
+body {
+  background: #151928;
+  color: #fff;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+
+}
+
+header{
+  display: flex;
+  grid-column-start: 2;
+  grid-column-end: 12;
+  grid-row-start: 1;
+  grid-row-end: 2;   
+  align-items: center; /* aligne verticalement au centre */
+  justify-content: space-between; /* espace entre logo et nav */
+}
+
+nav button
+{
+  background: #1e1e2e;
+  color: #fff;
+  border: 1px solid #00ffe7;
+  padding: 0.6rem 1.2rem;
+  margin-left: 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+nav .btn:hover {
+  background: #00ffe7;
+  color: #0b0e17;
+}
+
+main {
+    grid-column-start: 2;
+    grid-column-end: 12; 
+    grid-row-start: 2;
+    grid-row-end: 12;
+    border: #00ffe7 2px solid ;
+    overflow: hidden;
+}
+
+footer {
+  display: flex;
+  grid-column-start: 2;
+    grid-column-end: 12; 
+    grid-row-start: 12;
+  grid-row-end: 13;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
+
+/* TV Frame */
+.main-content {
+  display: flex;
+  justify-content: center;
+  grid-column-start: 2;
+  grid-column-end: 10;
+  grid-row-start: 2;
+  grid-row-end: 10;
+  width: 100%;
+  height: 100%;
+  margin: 2rem 0;
+      border: #00ffe7 2px solid ;
+      background: #3a2a1a;
+}
+
+/* .tv-frame {
+  
+
+
+  border-radius: 25px;
+  padding: 1rem;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+} */
+
+/* .pong-screen {
+  position: relative;
+  width: 100;
+  height: 900px;
+  background: black;
+  border: 3px solid white;
+  border-radius: 10px;
+  overflow: hidden;
+} */
+
+/* Score */
+.score {
+  position: absolute;
+  top: 10px;
+  left: 40%;
+  font-size: 2rem;
+}
+
+.score.right {
+  left: auto;
+  right: 40%;
+}
+
+/* Center line */
+.center-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: repeating-linear-gradient(
+    to bottom,
+    white,
+    white 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  transform: translateX(-50%);
+}
+
+/* Paddles */
+.paddle {
+  position: absolute;
+  width: 10px;
+  height: 60px;
+  background: white;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.paddle.left {
+  left: 20px;
+}
+
+.paddle.right {
+  right: 20px;
+}
+
+
