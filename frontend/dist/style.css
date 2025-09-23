@@ -14,7 +14,7 @@ body {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(12, 1fr);
-
+  gap: 0;
 }
 
 header{
@@ -25,6 +25,13 @@ header{
   grid-row-end: 2;   
   align-items: center; /* aligne verticalement au centre */
   justify-content: space-between; /* espace entre logo et nav */
+  overflow: hidden;
+}
+
+.logo
+{
+  position: relative;
+  top: 10px;
 }
 
 nav button
@@ -36,7 +43,7 @@ nav button
   margin-left: 0.8rem;
   border-radius: 8px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.3;
 }
 
 nav .btn:hover {
@@ -44,64 +51,74 @@ nav .btn:hover {
   color: #0b0e17;
 }
 
+
+
+
+
 main {
-    grid-column-start: 2;
-    grid-column-end: 12; 
-    grid-row-start: 2;
-    grid-row-end: 12;
-    border: #00ffe7 2px solid ;
-    overflow: hidden;
+  display: flex;         
+  flex-direction: column; 
+  grid-column-start: 2;
+  grid-column-end: 12; 
+  grid-row-start: 2;
+  grid-row-end: 12;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  overflow: hidden;
 }
+
+main p 
+{
+  margin-bottom: 15px;
+}
+
 
 footer {
   display: flex;
   grid-column-start: 2;
-    grid-column-end: 12; 
-    grid-row-start: 12;
+  grid-column-end: 12; 
+  grid-row-start: 12;
   grid-row-end: 13;
   justify-content: center;
   align-items: center;
 
 }
 
-
-
-/* TV Frame */
-.main-content {
-  display: flex;
-  justify-content: center;
-  grid-column-start: 2;
-  grid-column-end: 10;
-  grid-row-start: 2;
-  grid-row-end: 10;
-  width: 100%;
-  height: 100%;
-  margin: 2rem 0;
-      border: #00ffe7 2px solid ;
-      background: #3a2a1a;
+footer p {
+  margin: 0;             
+  text-align: center;    
+  width: 100%;           
 }
 
-/* .tv-frame {
-  
+
+/* ---------------- TV Frame (cadre avec coins arrondis) ---------------- */
 
 
-  border-radius: 25px;
-  padding: 1rem;
+.tv-frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background: #3a2a1a;
   box-shadow: 0 0 20px rgba(0,0,0,0.6);
-} */
+  width: 100%;
+  height: 100%;
+  /* overflow: hidden; */
+}
 
-/* .pong-screen {
-  position: relative;
-  width: 100;
-  height: 900px;
+.pong-screen {
+
+
+  width: 96%;
+  height: 96%;
   background: black;
   border: 3px solid white;
   border-radius: 10px;
   overflow: hidden;
-} */
+}
 
-/* Score */
-.score {
+/* .score {
   position: absolute;
   top: 10px;
   left: 40%;
@@ -113,7 +130,6 @@ footer {
   right: 40%;
 }
 
-/* Center line */
 .center-line {
   position: absolute;
   top: 0;
@@ -130,7 +146,6 @@ footer {
   transform: translateX(-50%);
 }
 
-/* Paddles */
 .paddle {
   position: absolute;
   width: 10px;
@@ -147,5 +162,5 @@ footer {
 .paddle.right {
   right: 20px;
 }
-
+ */
 
