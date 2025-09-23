@@ -51,10 +51,6 @@ nav .btn:hover {
   color: #0b0e17;
 }
 
-
-
-
-
 main {
   display: flex;         
   flex-direction: column; 
@@ -108,26 +104,14 @@ footer p {
 }
 
 .pong-screen {
-
-
+  position: relative;
+  
   width: 96%;
   height: 96%;
   background: black;
-  border: 3px solid white;
+  border: 3px solid lightgrey;
   border-radius: 10px;
   overflow: hidden;
-}
-
-/* .score {
-  position: absolute;
-  top: 10px;
-  left: 40%;
-  font-size: 2rem;
-}
-
-.score.right {
-  left: auto;
-  right: 40%;
 }
 
 .center-line {
@@ -135,16 +119,31 @@ footer p {
   top: 0;
   bottom: 0;
   left: 50%;
-  width: 2px;
+  width: 6px;
   background: repeating-linear-gradient(
     to bottom,
-    white,
-    white 10px,
-    transparent 10px,
-    transparent 20px
+    lightgrey,
+    lightgrey 20px,
+    transparent 20px,
+    transparent 30px
   );
   transform: translateX(-50%);
 }
+
+.score 
+{
+  position: absolute;
+  top: 10px;
+  left: 40%;
+  font-size: 3rem;
+  color: lightgrey;
+}
+
+.score.right 
+{
+  left: auto;
+  right: 40%;
+} 
 
 .paddle {
   position: absolute;
@@ -162,5 +161,5 @@ footer p {
 .paddle.right {
   right: 20px;
 }
- */
+
 
