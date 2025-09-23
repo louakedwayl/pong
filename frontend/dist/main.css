@@ -1,0 +1,90 @@
+main {
+  display: flex;         
+  flex-direction: column; 
+  grid-column-start: 2;
+  grid-column-end: 12; 
+  grid-row-start: 2;
+  grid-row-end: 12;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  overflow: hidden;
+}
+
+main p 
+{
+  margin-bottom: 15px;
+}
+
+/* ---------------- TV Frame ---------------- */
+
+.tv-frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background: #3a2a1a;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  width: 100%;
+  height: 100%;
+  /* overflow: hidden; */
+}
+
+.pong-screen {
+  position: relative;
+  
+  width: 96%;
+  height: 96%;
+  background: black;
+  border: 3px solid lightgrey;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.center-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 6px;
+  background: repeating-linear-gradient(
+    to bottom,
+    lightgrey,
+    lightgrey 20px,
+    transparent 20px,
+    transparent 30px
+  );
+  transform: translateX(-50%);
+}
+
+.score 
+{
+  position: absolute;
+  top: 10px;
+  left: 40%;
+  font-size: 3rem;
+  color: lightgrey;
+}
+
+.score.right 
+{
+  left: auto;
+  right: 40%;
+} 
+
+.paddle {
+  position: absolute;
+  width: 10px;
+  height: 60px;
+  background: white;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.paddle.left {
+  left: 20px;
+}
+
+.paddle.right {
+  right: 20px;
+}

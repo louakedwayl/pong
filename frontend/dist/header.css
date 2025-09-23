@@ -1,0 +1,33 @@
+header{
+  display: flex;
+  grid-column-start: 2;
+  grid-column-end: 12;
+  grid-row-start: 1;
+  grid-row-end: 2;   
+  align-items: center; /* aligne verticalement au centre */
+  justify-content: space-between; /* espace entre logo et nav */
+  overflow: hidden;
+}
+
+.logo
+{
+  position: relative;
+  top: 10px;
+}
+
+nav button
+{
+  background: #1e1e2e;
+  color: #fff;
+  border: 1px solid #00ffe7;
+  padding: 0.6rem 1.2rem;
+  margin-left: 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3;
+}
+
+nav .btn:hover {
+  background: #00ffe7;
+  color: #0b0e17;
+}
