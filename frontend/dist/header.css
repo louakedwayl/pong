@@ -15,6 +15,11 @@ header{
   top: 10px;
 }
 
+nav
+{
+  font-size: 0;
+}
+
 nav button
 {
   background: #1e1e2e;
@@ -25,6 +30,7 @@ nav button
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3;
+  
 }
 
 nav .btn:hover {
