@@ -1,12 +1,12 @@
 # === Commandes ===
 
-## Construire les conteneurs avec docker-compose
-build:
-	docker compose build
-
 ## Démarrer les conteneurs
 up:
 	docker compose up -d
+
+## Construire les conteneurs avec docker-compose
+build:
+	docker compose build
 
 ## Arrêter les conteneurs
 down:
@@ -32,7 +32,7 @@ rm-volumes:
 rm-networks:
 	-docker network rm $$(docker network ls -q) || true
 
-## Supprimer absolument tout (dangereux ⚠️)
+## Supprimer tout
 nuke: rm-containers rm-images rm-volumes rm-networks
 	docker system prune -af --volumes
 

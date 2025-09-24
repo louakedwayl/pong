@@ -5,7 +5,13 @@
     "rootDir": "./src",
     "outDir": "./dist",
     "strict": true,
-    "sourceMap": true
+    "sourceMap": true,
+
+    "noUnusedLocals": true,           // avertit sur les variables inutilisées
+    "noUnusedParameters": true,       // avertit sur les paramètres inutilisés
+    "noImplicitReturns": true,        // assure que toutes les fonctions retournent une valeur
+    "noFallthroughCasesInSwitch": true, // empêche la chute accidentelle dans les switch
+    "exactOptionalPropertyTypes": true  // différencie prop?: string et prop: string | undefined
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
