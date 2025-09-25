@@ -88,3 +88,18 @@ main p
 .paddle.right {
   right: 20px;
 }
+
+
+/* blink animation */
+
+
+
+/*  */.blink {
+  animation: blink 0.5s step-start 6; /* 0.5s x 6 = 3s */
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}

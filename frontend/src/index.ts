@@ -1,6 +1,6 @@
 const nav = document.querySelector("nav") as HTMLElement;
 const button1 = document.querySelector("button.game") as HTMLButtonElement;
-
+const playerPaddle = document.querySelector(".paddle.left");
 
 const button2 = document.querySelector("button.language");
 const button3 = document.createElement("button");
@@ -24,3 +24,12 @@ if (nav && button1 && button2) {
 }
 
 
+// game 
+
+
+if (nav && button1 && playerPaddle)
+{
+  button1.addEventListener("click", () => {
+    playerPaddle.classList.add("blink");
+  });
+}
