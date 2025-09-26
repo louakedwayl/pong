@@ -1,6 +1,9 @@
 main {
   display: flex;         
-  flex-direction: column; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  gap: 30px;  /* ← Ajoutez cette ligne */
   grid-column-start: 2;
   grid-column-end: 12; 
   grid-row-start: 2;
@@ -25,8 +28,9 @@ main p
   border-top-right-radius: 20px;
   background: #3a2a1a;
   box-shadow: 0 0 20px rgba(0,0,0,0.6);
-  width: 100%;
-  height: 100%;
+  aspect-ratio: 4/3;
+  width: 1200px;;
+  height: auto;
   /* overflow: hidden; */
 }
 

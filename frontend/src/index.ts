@@ -51,8 +51,4 @@ document.addEventListener("keydown", (event) => {
   
 });
 
-
-  // aspect-ratio: 4/3;   /* Format classique Pong */
-    
-  // width: 1150px;
-  // height: auto;
+// metre un gap entre le logo pong et le texte 
