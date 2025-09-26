@@ -7,8 +7,8 @@ COPY conf/default.conf /etc/nginx/conf.d/default.conf
 # Ici, on suppose que tu feras un build externe ou via docker-compose
 COPY build/ /usr/share/nginx/html
 
-# Exposer le port choisi
-EXPOSE 4243
+# Exposer le port
+EXPOSE 80
 
 # Lancer Nginx
 CMD ["nginx", "-g", "daemon off;"]
