@@ -35,16 +35,24 @@ if (nav && button1 && playerPaddle)
 }
 
 let posY = 0;
-const maxY = 400; // adjust based on your game area height
-const minY = 0;
+
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "ArrowDown") {
-    posY = posY + 10;
-  }
-  else if (event.key === "ArrowUp") {
-    posY = posY - 10;
-  }
+    let maxY = 400; // 40% de la hauteur de l'écran
+    let minY = -400; // -40% de la hauteur de l'écran
+    
+    if (event.key === "ArrowDown") {
+        posY = Math.min(posY + 5, maxY); // incréments plus petits en %
+    }
+    else if (event.key === "ArrowUp") {
+        posY = Math.max(posY - 5, minY);
+    }
+    playerPaddle.style.transform = `translateY(calc(-50% + ${posY}%))`;
   
-  playerPaddle.style.transform = `translateY(${posY}px)`;
 });
+
+
+  // aspect-ratio: 4/3;   /* Format classique Pong */
+    
+  // width: 1150px;
+  // height: auto;
