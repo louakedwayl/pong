@@ -76,7 +76,7 @@ main p
   position: absolute;
   width: 10px;
   height: 60px;
-  background: white;
+  background: lightgrey;
   top: 50%;
   transform: translateY(-50%);
 }

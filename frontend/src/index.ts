@@ -1,6 +1,6 @@
 const nav = document.querySelector("nav") as HTMLElement;
 const button1 = document.querySelector("button.game") as HTMLButtonElement;
-const playerPaddle = document.querySelector(".paddle.left");
+const playerPaddle = document.querySelector(".paddle.left") as HTMLElement;
 
 const button2 = document.querySelector("button.language");
 const button3 = document.createElement("button");
@@ -33,3 +33,18 @@ if (nav && button1 && playerPaddle)
     playerPaddle.classList.add("blink");
   });
 }
+
+let posY = 0;
+const maxY = 400; // adjust based on your game area height
+const minY = 0;
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "ArrowDown") {
+    posY = posY + 10;
+  }
+  else if (event.key === "ArrowUp") {
+    posY = posY - 10;
+  }
+  
+  playerPaddle.style.transform = `translateY(${posY}px)`;
+});
