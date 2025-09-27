@@ -8,8 +8,6 @@ main {
   grid-column-end: 12; 
   grid-row-start: 2;
   grid-row-end: 12;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
   overflow: hidden;
 }
 
@@ -31,6 +29,8 @@ main p
   aspect-ratio: 4/3;
   width: 1200px;;
   height: auto;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
   /* overflow: hidden; */
 }
 
