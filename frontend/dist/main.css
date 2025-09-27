@@ -79,10 +79,10 @@ main p
 .paddle {
   position: absolute;
   width: 10px;
-  height: 60px;
+  height: 90px;
   background: lightgrey;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-45px);
 }
 
 .paddle.left {

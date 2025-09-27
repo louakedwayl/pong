@@ -37,18 +37,62 @@ if (nav && button1 && playerPaddle)
 let posY = 0;
 
 
-document.addEventListener("keydown", (event) => {
-    let maxY = 400; // 40% de la hauteur de l'écran
-    let minY = -400; // -40% de la hauteur de l'écran
+// document.addEventListener("keydown", (event) => {
+//     let maxY = 384; // 40% de la hauteur de l'écran
+//     let minY = -384; // -40% de la hauteur de l'écran
     
-    if (event.key === "ArrowDown") {
-        posY = Math.min(posY + 5, maxY); // incréments plus petits en %
-    }
-    else if (event.key === "ArrowUp") {
-        posY = Math.max(posY - 5, minY);
-    }
-    playerPaddle.style.transform = `translateY(calc(-50% + ${posY}%))`;
+//     if (event.key === "ArrowDown") {
+//         posY = Math.min(posY + 15, maxY); // incréments plus petits en %
+//     }
+//     else if (event.key === "ArrowUp") {
+//         posY = Math.max(posY - 15, minY);
+//     }
+//     playerPaddle.style.transform = `translateY(calc(-45px + ${posY}px))`;
   
+// });
+
+
+
+// Objet pour tracker l'état des touches
+const keys = {
+    ArrowUp: false,
+    ArrowDown: false
+};
+
+let maxY = 384; // 40% de la hauteur de l'écran
+let minY = -384; // -40% de la hauteur de l'écran
+
+// Écouter quand une touche est pressée
+document.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+        keys[event.key] = true;
+        event.preventDefault(); // Éviter le scroll de la page
+    }
 });
 
-// metre un gap entre le logo pong et le texte 
+// Écouter quand une touche est relâchée
+document.addEventListener("keyup", (event) => {
+    if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+        keys[event.key] = false;
+        event.preventDefault();
+    }
+});
+
+// Fonction qui met à jour la position en continu
+function updatePaddlePosition() {
+    if (keys.ArrowDown) {
+        posY = Math.min(posY + 8, maxY); // Mouvement plus fluide avec des incréments plus petits
+    }
+    if (keys.ArrowUp) {
+        posY = Math.max(posY - 8, minY);
+    }
+    
+    // Mettre à jour la position visuelle
+    playerPaddle.style.transform = `translateY(calc(-45px + ${posY}px))`;
+    
+    // Répéter à chaque frame
+    requestAnimationFrame(updatePaddlePosition);
+}
+
+// Démarrer la boucle de mise à jour
+updatePaddlePosition();
