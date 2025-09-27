@@ -10,6 +10,8 @@ footer {
 }
 
 footer p {
+  position: relative;
+  bottom: 15px;
   margin: 0;             
   text-align: center;    
   width: 100%;           

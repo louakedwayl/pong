@@ -24,6 +24,7 @@ nav button
 {
   position: relative;
   top: 20px;
+  right: 10px;
   background: #1e1e2e;
   color: #fff;
   border: 1px solid #00ffe7;
