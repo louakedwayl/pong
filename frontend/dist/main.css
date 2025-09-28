@@ -98,7 +98,8 @@ main p
 
 
 
-/*  */.blink {
+/*  */
+.blink {
   animation: blink 0.5s step-start 6; /* 0.5s x 6 = 3s */
 }
 

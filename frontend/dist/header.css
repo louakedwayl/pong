@@ -37,6 +37,6 @@ nav button
 }
 
 nav .btn:hover {
-  background: #00ffe7;
+  background-color: #00ffe7;
   color: #0b0e17;
 }
