@@ -12,6 +12,8 @@ button5.classList.add("btn");
 button6.classList.add("btn");
 
 button3.textContent = "BACK";
+button3.style.paddingLeft = "26px";
+button3.style.paddingRight = "26px";
 button4.textContent = "English";
 button5.textContent = "Русский";
 button6.textContent = "Français";
@@ -34,7 +36,7 @@ button3.addEventListener("click",()=>
     nav.removeChild(button4);
     nav.removeChild(button5);
     nav.removeChild(button6);
-    button1.style.display = "";
+    button1.style.display = ""; // style par default
     button2.style.display = "";
 })
 
@@ -49,7 +51,7 @@ button4.addEventListener("click",()=>
     button2.style.display = "";
 })
 
-button4.addEventListener("click",()=>
+button5.addEventListener("click",()=>
 {
     // Russe
     nav.removeChild(button3);
@@ -60,7 +62,7 @@ button4.addEventListener("click",()=>
     button2.style.display = "";
 })
 
-button4.addEventListener("click",()=>
+button6.addEventListener("click",()=>
 {
     //Francais
     nav.removeChild(button3);

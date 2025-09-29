@@ -6,13 +6,13 @@ header{
   grid-row-end: 2;   
   align-items: center; /* aligne verticalement au centre */
   justify-content: space-between; /* espace entre logo et nav */
-  overflow: hidden;
 }
 
 .logo
 {
   position: relative;
   top: 30px;
+  padding-right: 60px 
 }
 
 nav
