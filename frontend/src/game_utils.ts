@@ -42,11 +42,13 @@ export function new_game_animation()
             {
           playerPaddle.classList.remove("blink");
           resolve ();
-        }) 
-    });
+        } , { once: true });
+    }, { once: true });
     }
   });
 }
+
+
 
 // Fonction qui met à jour la position en continu
 export function updatePaddlePosition() 
