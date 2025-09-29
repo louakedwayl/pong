@@ -55,8 +55,8 @@ export function new_game_animation()
                     {
                         playerPaddle.classList.remove("blink");
                         resolve ();
-                    } , { once: true });
-                    }, { once: true });
+                    },{ once: true });
+                },{ once: true });
             }
         });
 }
@@ -78,17 +78,22 @@ export function updatePaddlePosition()
 
 export function updateNav() 
 {
-        button1.style.display= "none";
-        button2.style.display= "none";
-        nav.appendChild(button3);
-        nav.appendChild(button4);   
+    button1.style.display= "none";
+    button2.style.display= "none";
+    nav.appendChild(button3);
+    nav.appendChild(button4);
 }
 
 export function handlerBack() 
 {
     button4.addEventListener("click", () => 
     {
-            // GERER le retour au menu
+        playerPaddle.classList.remove("blink");
+        nav.removeChild(button3);
+        nav.removeChild(button4);
+        button1.style.display= "";
+        button2.style.display= "";
+        new_game_animation();
     });
 }
 
