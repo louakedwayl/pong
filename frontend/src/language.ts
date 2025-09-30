@@ -18,6 +18,9 @@ button4.textContent = "English";
 button5.textContent = "Русский";
 button6.textContent = "Français";
 
+let current :string = "en";
+
+
 if (nav && button1 && button2) {
     button2.addEventListener("click", () => 
     {
@@ -40,35 +43,22 @@ button3.addEventListener("click",()=>
     button2.style.display = "";
 })
 
-button4.addEventListener("click",()=>
+function switch_language (language :string)
 {
-    // English
+    if (language == current)
+        return ;
+    current = language;
+    
     nav.removeChild(button3);
     nav.removeChild(button4);
     nav.removeChild(button5);
     nav.removeChild(button6);
     button1.style.display = "";
     button2.style.display = "";
-})
+}
 
-button5.addEventListener("click",()=>
-{
-    // Russe
-    nav.removeChild(button3);
-    nav.removeChild(button4);
-    nav.removeChild(button5);
-    nav.removeChild(button6);
-    button1.style.display = "";
-    button2.style.display = "";
-})
 
-button6.addEventListener("click",()=>
-{
-    //Francais
-    nav.removeChild(button3);
-    nav.removeChild(button4);
-    nav.removeChild(button5);
-    nav.removeChild(button6);
-    button1.style.display = "";
-    button2.style.display = "";
-})
+
+button4.addEventListener( "click", ()=>{ switch_language("en");});
+button5.addEventListener( "click", ()=>{ switch_language("ru");});
+button6.addEventListener( "click", ()=>{ switch_language("fr");});

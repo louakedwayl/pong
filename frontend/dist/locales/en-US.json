@@ -1,0 +1,6 @@
+{
+    "main" : "Pong is one of the first computer games ever created. This simple 'tennis-like' game features two paddles and a ball, and the goal is to defeat your opponent by being the first to reach 10 points; a player scores a point whenever the opponent misses the ball. The game can be played by two human players or one player against a computer-controlled paddle. It was originally developed by Allan Alcorn and released in 1972 by Atari.;",
+    "newGame": "New Game",
+    "pause": "Pause",
+    "back": "Back"
+}

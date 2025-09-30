@@ -1,4 +1,4 @@
-import {handlerBack, new_game_animation, updatePaddlePosition} from "./game_utils.js";
+import {handlerBack, handlerPause, new_game_animation, updatePaddlePosition} from "./game_utils.js";
 
 async function startGame()
 {
@@ -7,4 +7,5 @@ async function startGame()
 }
 
 handlerBack();
+handlerPause();
 startGame();
