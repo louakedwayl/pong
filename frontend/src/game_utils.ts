@@ -3,7 +3,7 @@ export const button1 = document.querySelector("button.game") as HTMLButtonElemen
 export const button2 = document.querySelector("button.language") as HTMLButtonElement;
 
 export const playerPaddle = document.querySelector(".paddle.left") as HTMLElement;
-
+export const ball = document.querySelector(".ball") as HTMLElement;
 export let posY = 0;
 
 // Key state
@@ -44,21 +44,22 @@ if (event.key === "ArrowUp" || event.key === "ArrowDown") {
 export function new_game_animation()
 {
     return new Promise<void>((resolve) => 
+    {
+        if (nav && button1 && playerPaddle)
         {
-            if (nav && button1 && playerPaddle)
+            button1.addEventListener("click", () => 
             {
-                button1.addEventListener("click", () => 
+                updateNav();
+                playerPaddle.classList.add("blink");
+                playerPaddle.addEventListener("animationend", () =>
                 {
-                    updateNav();
-                    playerPaddle.classList.add("blink");
-                    playerPaddle.addEventListener("animationend", () =>
-                    {
-                        playerPaddle.classList.remove("blink");
-                        resolve ();
-                    },{ once: true });
+                    playerPaddle.classList.remove("blink");
+                    ball.style.display = "block";
+                    resolve ();
                 },{ once: true });
-            }
-        });
+            },{ once: true });
+        }
+    });
 }
 
 // Fonction qui met à jour la position en continu
