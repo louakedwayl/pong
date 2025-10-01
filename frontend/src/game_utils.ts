@@ -97,10 +97,17 @@ export function handlerBack()
     });
 }
 
+let pause :boolean = false;
+
 export function handlerPause() 
 {
     buttonGamePause.addEventListener("click", () => 
     {
+        playerPaddle.classList.remove("blink");
+        if (pause == true)
+            pause = false;
+        else if (pause == false)
+            pause = true;
         // GERER la pause
     });
 }
