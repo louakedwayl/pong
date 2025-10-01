@@ -1,6 +1,9 @@
 {
-    "main" : "Pong est l’un des tout premiers jeux vidéo jamais créés. Ce simple jeu « semblable au tennis » met en scène deux raquettes et une balle, et le but est de battre son adversaire en étant le premier à atteindre 10 points ; un joueur marque un point chaque fois que l’adversaire rate la balle. Le jeu peut être joué par deux joueurs humains ou par un joueur contre une raquette contrôlée par l’ordinateur. Il a été initialement développé par Allan Alcorn et publié en 1972 par Atari.",
+    "main" : "Pong est l’un des tout premiers jeux vidéo jamais créés. Ce simple jeu « semblable au tennis » met en scène deux raquettes et une balle, et le but est de battre son adversaire en étant le premier à atteindre 10 points. Un joueur marque un point chaque fois que l’adversaire rate la balle. Le jeu peut être joué par deux joueurs humains ou par un joueur contre une raquette contrôlée par l’ordinateur. Il a été initialement développé par Allan Alcorn et publié en 1972 par Atari.",
     "newGame": "Nouvelle partie",
+    "language": "Langue",
     "pause": "Pause",
-    "back": "Retour"
+    "back": "Retour",
+    "license" : "© 2025 Wayl Louaked. Ce projet est licencié sous ",
+    "licenseLink" : "Licence MIT"
 }

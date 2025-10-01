@@ -15,16 +15,16 @@ export const keys = {
 export const maxY = 384; // Screen height
 export const minY = -384; //
 
-export const button3 = document.createElement("button") as HTMLButtonElement;
-export const button4 = document.createElement("button") as HTMLButtonElement;
-button3.classList.add("btn");
-button4.classList.add("btn");
-button3.textContent = "PAUSE";
-button3.style.paddingLeft = "26px";
-button3.style.paddingRight = "26px";
-button4.textContent = "BACK";
-button4.style.paddingLeft = "26px";
-button4.style.paddingRight = "26px";
+export const buttonGamePause = document.createElement("button") as HTMLButtonElement;
+export const buttonGameBack = document.createElement("button") as HTMLButtonElement;
+buttonGamePause.classList.add("btn");
+buttonGameBack.classList.add("btn");
+buttonGamePause.textContent = "PAUSE";
+buttonGamePause.style.paddingLeft = "26px";
+buttonGamePause.style.paddingRight = "26px";
+buttonGameBack.textContent = "BACK";
+buttonGameBack.style.paddingLeft = "26px";
+buttonGameBack.style.paddingRight = "26px";
 
 // Listen when a key was pressed
 document.addEventListener("keydown", (event) => {
@@ -80,17 +80,17 @@ export function updateNav()
 {
     button1.style.display= "none";
     button2.style.display= "none";
-    nav.appendChild(button3);
-    nav.appendChild(button4);
+    nav.appendChild(buttonGamePause);
+    nav.appendChild(buttonGameBack);
 }
 
 export function handlerBack() 
 {
-    button4.addEventListener("click", () => 
+    buttonGameBack.addEventListener("click", () => 
     {
         playerPaddle.classList.remove("blink");
-        nav.removeChild(button3);
-        nav.removeChild(button4);
+        nav.removeChild(buttonGamePause);
+        nav.removeChild(buttonGameBack);
         button1.style.display= "";
         button2.style.display= "";
         new_game_animation();
@@ -99,7 +99,7 @@ export function handlerBack()
 
 export function handlerPause() 
 {
-    button3.addEventListener("click", () => 
+    buttonGamePause.addEventListener("click", () => 
     {
         // GERER la pause
     });
