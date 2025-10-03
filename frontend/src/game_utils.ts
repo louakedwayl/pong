@@ -62,6 +62,7 @@ export function new_game_animation()
                 {
                     playerPaddle.classList.remove("blink");
                     ball.style.display = "block";
+                    updateBallPosition();
                     resolve ();
                 },{ once: true });
             },{ once: true });
@@ -112,6 +113,12 @@ export function handlerBack()
         new_game_animation();
         if (animationId)
             cancelAnimationFrame(animationId);
+        if (ballAnimationId) // ✅ Maintenant ballAnimationId est utilisé
+        {
+            cancelAnimationFrame(ballAnimationId);
+            ballAnimationId = null;
+        }
+
         ball.style.display = "none";
         playerPaddle.style.top = "50%";
         playerPaddle.style.transform = "translateY(-45px)";
@@ -138,4 +145,67 @@ export function handlerPause()
                 cancelAnimationFrame(animationId);
         }
     });
+}
+
+// ball feature
+
+let ballX = 0;
+let ballY = 0;
+let ballSpeedX = -3;
+let ballSpeedY = 3;
+let ballAnimationId : number | null = null;
+
+export function updateBallPosition() {
+  // Déplacement
+  ballX += ballSpeedX;
+  ballY += ballSpeedY;
+
+  // ⭐ VÉRIFIER LES SORTIES GAUCHE/DROITE EN PREMIER
+  if (ballX < -400 || ballX > 400) {
+    resetBall();
+    return;
+  }
+
+  // Rebond haut/bas (seulement si la balle n'est pas sortie)
+  if (ballY >= 384) {
+    ballY = 384;
+    ballSpeedY = -Math.abs(ballSpeedY);
+  } else if (ballY <= -384) {
+    ballY = -384;
+    ballSpeedY = Math.abs(ballSpeedY);
+  }
+
+  // Collision avec la raquette du joueur (gauche)
+  if (ballX <= -350 && ballY >= posY - 50 && ballY <= posY + 50) {
+    ballSpeedX = Math.abs(ballSpeedX);
+    ballX = -350;
+  }
+
+  // Collision avec la raquette adverse (droite) - si vous en avez une
+  // if (ballX >= 350 && ballY >= opponentY - 50 && ballY <= opponentY + 50) {
+  //   ballSpeedX = -Math.abs(ballSpeedX);
+  //   ballX = 350;
+  // }
+
+  // Appliquer la position
+  ball.style.transform = `translate(${ballX}px, ${ballY}px)`;
+
+  // Continuer
+  ballAnimationId = requestAnimationFrame(updateBallPosition);
+}
+
+function resetBall() {
+  if (ballAnimationId !== null) {
+    cancelAnimationFrame(ballAnimationId);
+    ballAnimationId = null;
+  }
+
+  ballX = 0;
+  ballY = 0;
+  ballSpeedX = -3;
+  ballSpeedY = 3;
+
+  setTimeout(() => {
+    updateBallPosition();
+  }, 1000);
 }
