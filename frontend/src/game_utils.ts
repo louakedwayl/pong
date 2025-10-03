@@ -26,6 +26,8 @@ buttonGameBack.textContent = "BACK";
 buttonGameBack.style.paddingLeft = "26px";
 buttonGameBack.style.paddingRight = "26px";
 
+let animationId : number | null = null;
+
 // Listen when a key was pressed
 document.addEventListener("keydown", (event) => {
 if (event.key === "ArrowUp" || event.key === "ArrowDown") {
@@ -50,6 +52,11 @@ export function new_game_animation()
             button1.addEventListener("click", () => 
             {
                 updateNav();
+
+                if (back == true)
+                    updatePaddlePosition();
+
+
                 playerPaddle.classList.add("blink");
                 playerPaddle.addEventListener("animationend", () =>
                 {
@@ -61,6 +68,8 @@ export function new_game_animation()
         }
     });
 }
+
+
 
 // Fonction qui met à jour la position en continu
 export function updatePaddlePosition() 
@@ -74,7 +83,7 @@ export function updatePaddlePosition()
     // Mettre à jour la position visuelle
     playerPaddle.style.transform = `translateY(calc(-45px + ${posY}px))`;
     // Répéter à chaque frame
-    requestAnimationFrame(updatePaddlePosition);
+    animationId =  requestAnimationFrame(updatePaddlePosition);
 }
 
 export function updateNav() 
@@ -85,16 +94,28 @@ export function updateNav()
     nav.appendChild(buttonGameBack);
 }
 
+let back :boolean = false;
+
 export function handlerBack() 
 {
     buttonGameBack.addEventListener("click", () => 
     {
+        if (pause == true)
+            pause = false;
+
+
         playerPaddle.classList.remove("blink");
         nav.removeChild(buttonGamePause);
         nav.removeChild(buttonGameBack);
         button1.style.display= "";
         button2.style.display= "";
         new_game_animation();
+        if (animationId)
+            cancelAnimationFrame(animationId);
+        ball.style.display = "none";
+        playerPaddle.style.top = "50%";
+        playerPaddle.style.transform = "translateY(-45px)";
+        back = true;
     });
 }
 
@@ -106,9 +127,15 @@ export function handlerPause()
     {
         playerPaddle.classList.remove("blink");
         if (pause == true)
+        {
             pause = false;
+            updatePaddlePosition();
+        }
         else if (pause == false)
+        {
             pause = true;
-        // GERER la pause
+            if (animationId)
+                cancelAnimationFrame(animationId);
+        }
     });
 }
