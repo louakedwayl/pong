@@ -6,6 +6,9 @@ export const playerPaddle = document.querySelector(".paddle.left") as HTMLElemen
 export const ball = document.querySelector(".ball") as HTMLElement;
 export let posY = 0;
 
+export const scoreLeft = document.querySelector(".score") as HTMLElement;
+export const scoreRight = document.querySelector(".score.right") as HTMLElement;
+
 // Key state
 export const keys = {
   ArrowUp: false,
@@ -52,9 +55,7 @@ export function new_game_animation()
             button1.addEventListener("click", () => 
             {
                 updateNav();
-
-                if (back == true)
-                    updatePaddlePosition();
+                updatePaddlePosition();
 
 
                 playerPaddle.classList.add("blink");
@@ -62,10 +63,17 @@ export function new_game_animation()
                 {
                     playerPaddle.classList.remove("blink");
                     ball.style.display = "block";
-                    updateBallPosition();
+                    
+                    // ✅ AJOUTE LE MÊME DÉLAI QUE resetBall()
+                    setTimeout(() => {
+                        updateBallPosition();
+                    }, 1000);
+                    
                     resolve ();
+
+                    
                 },{ once: true });
-            },{ once: true });
+            });
         }
     });
 }
@@ -75,7 +83,10 @@ export function new_game_animation()
 // Fonction qui met à jour la position en continu
 export function updatePaddlePosition() 
 {
-    if (keys.ArrowDown) {
+  if (pause)
+     return; // ← stop la boucle si pause activé
+    
+  if (keys.ArrowDown) {
         posY = Math.min(posY + 8, maxY);
     }
       if (keys.ArrowUp) {
@@ -95,8 +106,6 @@ export function updateNav()
     nav.appendChild(buttonGameBack);
 }
 
-let back :boolean = false;
-
 export function handlerBack() 
 {
     buttonGameBack.addEventListener("click", () => 
@@ -110,7 +119,10 @@ export function handlerBack()
         nav.removeChild(buttonGameBack);
         button1.style.display= "";
         button2.style.display= "";
-        new_game_animation();
+        // ✅ Réinitialiser les scores
+        scoreLeft.textContent = "0";
+        scoreRight.textContent = "0";
+
         if (animationId)
             cancelAnimationFrame(animationId);
         if (ballAnimationId) // ✅ Maintenant ballAnimationId est utilisé
@@ -118,11 +130,13 @@ export function handlerBack()
             cancelAnimationFrame(ballAnimationId);
             ballAnimationId = null;
         }
-
+        posY = 0; // ✅ AJOUTE ÇA
+        ballX = 0;
+        ballY = 0;
+        ball.style.transform = `translate(0px, 0px)`;
         ball.style.display = "none";
         playerPaddle.style.top = "50%";
         playerPaddle.style.transform = "translateY(-45px)";
-        back = true;
     });
 }
 
@@ -137,23 +151,37 @@ export function handlerPause()
         {
             pause = false;
             updatePaddlePosition();
+            
+            // Relancer la balle
+            if (ballAnimationId === null) {
+                updateBallPosition();
+            }
         }
         else if (pause == false)
         {
             pause = true;
+            
+            // Arrêter la raquette
             if (animationId)
-                cancelAnimationFrame(animationId);
+            {
+              cancelAnimationFrame(animationId);
+              animationId = null; // ← ajoute cette ligne ici
+            }
+            // Arrêter la balle
+            if (ballAnimationId !== null) {
+                cancelAnimationFrame(ballAnimationId);
+                ballAnimationId = null;
+            }
         }
     });
 }
 
 // ball feature
-
-let ballX = 0; // ball position
+let ballX = 0;
 let ballY = 0;
-let ballSpeedX = -1; // ball direction and speed
-let ballSpeedY = 1;
-let ballAnimationId : number | null = null;
+let ballSpeedX = -3; // ✅ Commence déjà à -3
+let ballSpeedY = 3;  // ✅ Commence déjà à 3
+let ballAnimationId: number | null = null;
 
 const pongScreen = document.querySelector(".pong-screen") as HTMLElement;
 
@@ -161,38 +189,72 @@ export function updateBallPosition() {
   ballX += ballSpeedX;
   ballY += ballSpeedY;
 
-  // Position réelle
   const screenRect = pongScreen.getBoundingClientRect();
   const ballRect = ball.getBoundingClientRect();
+  const leftPaddleRect = playerPaddle.getBoundingClientRect();
 
-  // Rebond en bas
+  // bottom wall bounce
   if (ballRect.bottom >= screenRect.bottom) {
-    ballY -= (ballRect.bottom - screenRect.bottom);
+    ballY -= ballRect.bottom - screenRect.bottom;
     ballSpeedY = -Math.abs(ballSpeedY);
   }
 
-  // Rebond en haut
+  // top wall bounce
   if (ballRect.top <= screenRect.top) {
-    ballY += (screenRect.top - ballRect.top);
+    ballY += screenRect.top - ballRect.top;
     ballSpeedY = Math.abs(ballSpeedY);
   }
 
+  // left paddle bounce
+  if (
+    ballRect.left <= leftPaddleRect.right &&
+    ballRect.right >= leftPaddleRect.left &&
+    ballRect.top <= leftPaddleRect.bottom &&
+    ballRect.bottom >= leftPaddleRect.top
+  ) {
+    ballX += leftPaddleRect.right - ballRect.left;
+    ballSpeedX = Math.abs(ballSpeedX);
+  }
+
+  // Balle sort à gauche
+  if (ballRect.left <= screenRect.left) {
+    const currentRightScore = Number(scoreRight.textContent || "0");
+    scoreRight.textContent = String(currentRightScore + 1);
+    resetBall();
+    return;
+  }
+
+  // Balle sort à droite
+  if (ballRect.right >= screenRect.right) {
+    const currentLeftScore = Number(scoreLeft.textContent || "0");
+    scoreLeft.textContent = String(currentLeftScore + 1);
+    resetBall();
+    return;
+  }
+
+  // ✅ Applique le transform AVANT de vérifier les sorties
   ball.style.transform = `translate(${ballX}px, ${ballY}px)`;
   ballAnimationId = requestAnimationFrame(updateBallPosition);
 }
 
-// function resetBall() {
-//   if (ballAnimationId !== null) {
-//     cancelAnimationFrame(ballAnimationId);
-//     ballAnimationId = null;
-//   }
+export function resetBall() {
+  // Arrêter l'animation
+  if (ballAnimationId !== null) {
+    cancelAnimationFrame(ballAnimationId);
+    ballAnimationId = null;
+  }
 
-//   ballX = 0;
-//   ballY = 0;
-//   ballSpeedX = -3;
-//   ballSpeedY = 3;
+  // Réinitialiser les variables
+  ballX = 0;
+  ballY = 0;
+  ballSpeedX = -3;
+  ballSpeedY = 3;
 
-//   setTimeout(() => {
-//     updateBallPosition();
-//   }, 1000);
-// }
+  // ✅ CRUCIAL : Réinitialiser visuellement
+  ball.style.transform = `translate(0px, 0px)`;
+
+  // Relancer après 1 seconde
+  setTimeout(() => {
+    updateBallPosition();
+  }, 1000);
+}

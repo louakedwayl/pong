@@ -99,9 +99,9 @@ main p
   top: 600px;
   left: 550px;
 
-  width: 20px;
-  height: 20px;
-  background: red;
+  width: 17px;
+  height: 17px;
+  background: lightgray;
   display: none;
 }
 
