@@ -1,9 +1,17 @@
+import { 
+    ball, 
+    updateBallPosition, 
+    ballAnimationId, 
+    setBallX, 
+    setBallY, 
+    setballAnimationId 
+} from "./ball.js";
+
 export const nav = document.querySelector("nav") as HTMLElement;
 export const button1 = document.querySelector("button.game") as HTMLButtonElement;
 export const button2 = document.querySelector("button.language") as HTMLButtonElement;
 
 export const playerPaddle = document.querySelector(".paddle.left") as HTMLElement;
-export const ball = document.querySelector(".ball") as HTMLElement;
 export let posY = 0;
 
 export const scoreLeft = document.querySelector(".score") as HTMLElement;
@@ -62,14 +70,11 @@ export function new_game_animation()
                     playerPaddle.classList.remove("blink");
                     ball.style.display = "block";
                     
-                    // ✅ AJOUTE LE MÊME DÉLAI QUE resetBall()
                     setTimeout(() => {
-                        updateBallPosition();
+                        updateBallPosition(); 
                     }, 1000);
                     
-                    resolve ();
-
-                    
+                    resolve();
                 },{ once: true });
             });
         }
@@ -126,11 +131,11 @@ export function handlerBack()
         if (ballAnimationId) // ✅ Maintenant ballAnimationId est utilisé
         {
             cancelAnimationFrame(ballAnimationId);
-            ballAnimationId = null;
+            setballAnimationId(null)
         }
         posY = 0; // ✅ AJOUTE ÇA
-        ballX = 0;
-        ballY = 0;
+        setBallX(0);
+        setBallY(0);
         ball.style.transform = `translate(0px, 0px)`;
         ball.style.display = "none";
         playerPaddle.style.top = "50%";
@@ -168,91 +173,8 @@ export function handlerPause()
             // Arrêter la balle
             if (ballAnimationId !== null) {
                 cancelAnimationFrame(ballAnimationId);
-                ballAnimationId = null;
+                setballAnimationId(null);
             }
         }
     });
-}
-
-// ball feature
-let ballX = 0;
-let ballY = 0;
-let ballSpeedX = -3; // ✅ Commence déjà à -3
-let ballSpeedY = 3;  // ✅ Commence déjà à 3
-let ballAnimationId: number | null = null;
-
-const pongScreen = document.querySelector(".pong-screen") as HTMLElement;
-
-export function updateBallPosition() {
-  ballX += ballSpeedX;
-  ballY += ballSpeedY;
-
-  const screenRect = pongScreen.getBoundingClientRect();
-  const ballRect = ball.getBoundingClientRect();
-  const leftPaddleRect = playerPaddle.getBoundingClientRect();
-
-  // bottom wall bounce
-  if (ballRect.bottom >= screenRect.bottom) {
-    ballY -= ballRect.bottom - screenRect.bottom;
-    ballSpeedY = -Math.abs(ballSpeedY);
-  }
-
-  // top wall bounce
-  if (ballRect.top <= screenRect.top) {
-    ballY += screenRect.top - ballRect.top;
-    ballSpeedY = Math.abs(ballSpeedY);
-  }
-
-  // left paddle bounce
-  if (
-    ballRect.left <= leftPaddleRect.right &&
-    ballRect.right >= leftPaddleRect.left &&
-    ballRect.top <= leftPaddleRect.bottom &&
-    ballRect.bottom >= leftPaddleRect.top
-  ) {
-    ballX += leftPaddleRect.right - ballRect.left;
-    ballSpeedX = Math.abs(ballSpeedX);
-  }
-
-  // Balle sort à gauche
-  if (ballRect.left <= screenRect.left) {
-    const currentRightScore = Number(scoreRight.textContent || "0");
-    scoreRight.textContent = String(currentRightScore + 1);
-    resetBall();
-    return;
-  }
-
-  // Balle sort à droite
-  if (ballRect.right >= screenRect.right) {
-    const currentLeftScore = Number(scoreLeft.textContent || "0");
-    scoreLeft.textContent = String(currentLeftScore + 1);
-    resetBall();
-    return;
-  }
-
-  // ✅ Applique le transform AVANT de vérifier les sorties
-  ball.style.transform = `translate(${ballX}px, ${ballY}px)`;
-  ballAnimationId = requestAnimationFrame(updateBallPosition);
-}
-
-export function resetBall() {
-  // Arrêter l'animation
-  if (ballAnimationId !== null) {
-    cancelAnimationFrame(ballAnimationId);
-    ballAnimationId = null;
-  }
-
-  // Réinitialiser les variables
-  ballX = 0;
-  ballY = 0;
-  ballSpeedX = -3;
-  ballSpeedY = 3;
-
-  // ✅ CRUCIAL : Réinitialiser visuellement
-  ball.style.transform = `translate(0px, 0px)`;
-
-  // Relancer après 1 seconde
-  setTimeout(() => {
-    updateBallPosition();
-  }, 1000);
 }
