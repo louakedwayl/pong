@@ -55,8 +55,6 @@ export function new_game_animation()
             button1.addEventListener("click", () => 
             {
                 updateNav();
-                updatePaddlePosition();
-
 
                 playerPaddle.classList.add("blink");
                 playerPaddle.addEventListener("animationend", () =>
