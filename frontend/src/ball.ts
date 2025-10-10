@@ -1,4 +1,5 @@
-import { playerPaddle ,scoreLeft, scoreRight} from "./game_utils.js";
+import {scoreLeft, scoreRight} from "./game_utils.js";
+import { playerPaddle } from "./paddle.js";
 
 export const ball = document.querySelector(".ball") as HTMLElement;
 export let ballX = 0;

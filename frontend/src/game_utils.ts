@@ -1,18 +1,10 @@
-import { 
-    ball, 
-    updateBallPosition, 
-    ballAnimationId, 
-    setBallX, 
-    setBallY, 
-    setballAnimationId 
-} from "./ball.js";
+import {ball, updateBallPosition, ballAnimationId, setBallX, setBallY, setballAnimationId } from "./ball.js";
+import { playerPaddle , setPlayerPaddlePosY , updatePaddlePosition} from "./paddle.js";
 
 export const nav = document.querySelector("nav") as HTMLElement;
 export const button1 = document.querySelector("button.game") as HTMLButtonElement;
 export const button2 = document.querySelector("button.language") as HTMLButtonElement;
 
-export const playerPaddle = document.querySelector(".paddle.left") as HTMLElement;
-export let posY = 0;
 
 export const scoreLeft = document.querySelector(".score") as HTMLElement;
 export const scoreRight = document.querySelector(".score.right") as HTMLElement;
@@ -37,7 +29,7 @@ buttonGameBack.textContent = "BACK";
 buttonGameBack.style.paddingLeft = "26px";
 buttonGameBack.style.paddingRight = "26px";
 
-let animationId : number | null = null;
+export let animationId : number | null = null;
 
 // Listen when a key was pressed
 document.addEventListener("keydown", (event) => {
@@ -81,26 +73,6 @@ export function new_game_animation()
     });
 }
 
-
-
-// Fonction qui met à jour la position en continu
-export function updatePaddlePosition() 
-{
-  if (pause)
-     return; // ← stop la boucle si pause activé
-    
-  if (keys.ArrowDown) {
-        posY = Math.min(posY + 8, maxY);
-    }
-      if (keys.ArrowUp) {
-      posY = Math.max(posY - 8, minY);
-    }    
-    // Mettre à jour la position visuelle
-    playerPaddle.style.transform = `translateY(calc(-45px + ${posY}px))`;
-    // Répéter à chaque frame
-    animationId =  requestAnimationFrame(updatePaddlePosition);
-}
-
 export function updateNav() 
 {
     button1.style.display= "none";
@@ -133,7 +105,7 @@ export function handlerBack()
             cancelAnimationFrame(ballAnimationId);
             setballAnimationId(null)
         }
-        posY = 0; // ✅ AJOUTE ÇA
+        setPlayerPaddlePosY(0);
         setBallX(0);
         setBallY(0);
         ball.style.transform = `translate(0px, 0px)`;
@@ -143,7 +115,7 @@ export function handlerBack()
     });
 }
 
-let pause :boolean = false;
+export let pause :boolean = false;
 
 export function handlerPause() 
 {
@@ -177,4 +149,9 @@ export function handlerPause()
             }
         }
     });
+}
+
+export function setAnimationId (id : number | null)
+{
+  animationId = id;
 }
