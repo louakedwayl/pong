@@ -1,5 +1,8 @@
 import {scoreLeft, scoreRight} from "./game_utils.js";
 import { playerPaddle } from "./paddle.js";
+import { opponentPaddle } from "./opponent.js";
+
+
 
 export const ball = document.querySelector(".ball") as HTMLElement;
 export let ballX = 0;
@@ -10,6 +13,7 @@ export let ballAnimationId: number | null = null;
 
 export const pongScreen = document.querySelector(".pong-screen") as HTMLElement;
 
+
 export function updateBallPosition() {
   ballX += ballSpeedX;
   ballY += ballSpeedY;
@@ -17,6 +21,7 @@ export function updateBallPosition() {
   const screenRect = pongScreen.getBoundingClientRect();
   const ballRect = ball.getBoundingClientRect();
   const leftPaddleRect = playerPaddle.getBoundingClientRect();
+  const rightPaddleRect = opponentPaddle.getBoundingClientRect();
 
   // bottom wall bounce
   if (ballRect.bottom >= screenRect.bottom) {
@@ -41,6 +46,16 @@ export function updateBallPosition() {
     ballSpeedX = Math.abs(ballSpeedX);
   }
 
+  // right paddle bounce
+  if (
+    ballRect.left <= rightPaddleRect.right &&
+    ballRect.right >= rightPaddleRect.left &&
+    ballRect.top <= rightPaddleRect.bottom &&
+    ballRect.bottom >= rightPaddleRect.top
+  ) {
+    ballX -= ballRect.right - rightPaddleRect.left;
+    ballSpeedX = -Math.abs(ballSpeedX);
+  }
   // Balle sort à gauche
   if (ballRect.left <= screenRect.left) {
     const currentRightScore = Number(scoreRight.textContent || "0");

@@ -8,8 +8,8 @@ export let opponentPosY = 0;
 
 const maxY = 384;
 const minY = -384;
-const opponentSpeed = 6;
-const offset = 23;
+const opponentSpeed = 4;
+const offset = 37;
 let reactionDelay = 0;
 
 export function updateOpponentPosition()
@@ -25,10 +25,9 @@ export function updateOpponentPosition()
     if (ballRect.left >= screenCenter) {
         reactionDelay++;
         
-        if (reactionDelay >= 2) {
-            reactionDelay = 0;
+
             
-            if (Math.random() > 0.12) {
+            if (Math.random() > 0.28) {
                 const ballCenterY = ballRect.top + ballRect.height / 2;
                 const paddleCenterY = paddleRect.top + paddleRect.height / 2;
                 
@@ -39,7 +38,7 @@ export function updateOpponentPosition()
                     opponentPosY = Math.min(opponentPosY + opponentSpeed, maxY);
                 }
                 opponentPaddle.style.transform = `translateY(calc(-45px + ${opponentPosY}px))`;
-            }
+            
         }
     }
     opponentAnimationId = requestAnimationFrame(updateOpponentPosition);
