@@ -1,4 +1,5 @@
 import {ball, updateBallPosition, ballAnimationId, setBallX, setBallY, setballAnimationId } from "./ball.js";
+import { updateOpponentPosition } from "./opponent.js";
 import { playerPaddle , setPlayerPaddlePosY , updatePaddlePosition} from "./paddle.js";
 
 export const nav = document.querySelector("nav") as HTMLElement;
@@ -126,6 +127,7 @@ export function handlerPause()
         {
             pause = false;
             updatePaddlePosition();
+            updateOpponentPosition();
             
             // Relancer la balle
             if (ballAnimationId === null) {

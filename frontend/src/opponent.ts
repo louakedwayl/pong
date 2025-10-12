@@ -27,7 +27,7 @@ export function updateOpponentPosition()
         
 
             
-            if (Math.random() > 0.28) {
+            if (Math.random() > 0.24) {
                 const ballCenterY = ballRect.top + ballRect.height / 2;
                 const paddleCenterY = paddleRect.top + paddleRect.height / 2;
                 
