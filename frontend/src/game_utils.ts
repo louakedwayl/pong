@@ -1,5 +1,5 @@
 import {ball, updateBallPosition, ballAnimationId, setBallX, setBallY, setballAnimationId } from "./ball.js";
-import { updateOpponentPosition } from "./opponent.js";
+import { updateOpponentPosition , setOpponentPosition, opponentPaddle} from "./opponent.js";
 import { playerPaddle , setPlayerPaddlePosY , updatePaddlePosition} from "./paddle.js";
 
 export const nav = document.querySelector("nav") as HTMLElement;
@@ -107,12 +107,15 @@ export function handlerBack()
             setballAnimationId(null)
         }
         setPlayerPaddlePosY(0);
+        setOpponentPosition(0);
         setBallX(0);
         setBallY(0);
         ball.style.transform = `translate(0px, 0px)`;
         ball.style.display = "none";
         playerPaddle.style.top = "50%";
         playerPaddle.style.transform = "translateY(-45px)";
+        opponentPaddle.style.top = "50%";
+        opponentPaddle.style.transform = "translateY(-45px)";
     });
 }
 
