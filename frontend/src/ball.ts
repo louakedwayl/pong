@@ -7,8 +7,8 @@ import { opponentPaddle } from "./opponent.js";
 export const ball = document.querySelector(".ball") as HTMLElement;
 export let ballX = 0;
 export let ballY = 0;
-export let ballSpeedX = -3; // ✅ Commence déjà à -3
-export let ballSpeedY = 3;  // ✅ Commence déjà à 3
+export let ballSpeedX = -4; // ✅ Commence déjà à -3
+export let ballSpeedY = 4;  // ✅ Commence déjà à 3
 export let ballAnimationId: number | null = null;
 
 export const pongScreen = document.querySelector(".pong-screen") as HTMLElement;
@@ -87,8 +87,8 @@ export function resetBall() {
   // Réinitialiser les variables
   ballX = 0;
   ballY = 0;
-  ballSpeedX = -3;
-  ballSpeedY = 3;
+  ballSpeedX = -4;
+  ballSpeedY = 4;
 
   // ✅ CRUCIAL : Réinitialiser visuellement
   ball.style.transform = `translate(0px, 0px)`;

@@ -8,7 +8,7 @@ export let opponentPosY = 0;
 
 const maxY = 384;
 const minY = -384;
-const opponentSpeed = 4;
+const opponentSpeed = 5;
 const offset = 37;
 let reactionDelay = 0;
 
@@ -27,7 +27,7 @@ export function updateOpponentPosition()
         
 
             
-            if (Math.random() > 0.22) {
+            if (Math.random() > 0.20) {
                 const ballCenterY = ballRect.top + ballRect.height / 2;
                 const paddleCenterY = paddleRect.top + paddleRect.height / 2;
                 
