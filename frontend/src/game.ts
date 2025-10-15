@@ -9,6 +9,6 @@ async function startGame()
     updateOpponentPosition();
 }
 
-handlerBack();
+handlerBack(startGame);
 handlerPause();
 startGame();

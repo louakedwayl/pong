@@ -69,7 +69,7 @@ export function new_game_animation()
                     
                     resolve();
                 },{ once: true });
-            });
+            }, {once: true});
         }
     });
 }
@@ -82,9 +82,9 @@ export function updateNav()
     nav.appendChild(buttonGameBack);
 }
 
-export function handlerBack() 
+export function handlerBack(restartGame: () => Promise<void>) 
 {
-    buttonGameBack.addEventListener("click", () => 
+    buttonGameBack.addEventListener("click", async () => 
     {
         if (pause == true)
             pause = false;
@@ -116,6 +116,7 @@ export function handlerBack()
         playerPaddle.style.transform = "translateY(-45px)";
         opponentPaddle.style.top = "50%";
         opponentPaddle.style.transform = "translateY(-45px)";
+        await restartGame();
     });
 }
 
