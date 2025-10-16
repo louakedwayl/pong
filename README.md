@@ -12,7 +12,7 @@ Ce projet est une réimplémentation moderne du célèbre jeu Pong. Affrontez un
 
 ## 🎯 Comment jouer
 
-- Utilisez les touches **↑** et **↓** (ou **W/S**) pour déplacer votre raquette
+- Utilisez les touches **↑** et **↓** pour déplacer votre raquette
 - Empêchez la balle de passer de votre côté
 
 ## Clone the repository
