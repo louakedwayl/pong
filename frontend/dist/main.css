@@ -1,11 +1,11 @@
 main {
-  display: flex;         
+  display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   gap: 30px;  /* ← Ajoutez cette ligne */
   grid-column-start: 2;
-  grid-column-end: 12; 
+  grid-column-end: 12;
   grid-row-start: 2;
   grid-row-end: 12;
   overflow: hidden;
@@ -36,7 +36,6 @@ main p
 
 .pong-screen {
   position: relative;
-  
   width: 96%;
   height: 96%;
   background: black;
@@ -61,7 +60,7 @@ main p
   transform: translateX(-50%);
 }
 
-.score 
+.score
 {
   position: absolute;
   top: 10px;
@@ -105,10 +104,8 @@ main p
   display: none;
 }
 
-
 /* blink animation */
 
-/*  */
 .blink {
   animation: blink 0.5s step-start 6; /* 0.5s x 6 = 3s */
 }

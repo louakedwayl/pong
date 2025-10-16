@@ -9,28 +9,22 @@ export let opponentPosY = 0;
 const maxY = 384;
 const minY = -384;
 const opponentSpeed = 5;
-const offset = 37;
+const offset = 35;
 let reactionDelay = 0;
 
 export function updateOpponentPosition()
 {
     if (pause == true)
         return;
-    
     const screenRect = pongScreen.getBoundingClientRect();
     const ballRect = ball.getBoundingClientRect();
     const paddleRect = opponentPaddle.getBoundingClientRect();
     const screenCenter = screenRect.left + screenRect.width / 2;
-    
     if (ballRect.left >= screenCenter) {
         reactionDelay++;
-        
-
-            
-            if (Math.random() > 0.20) {
+            if (Math.random() > 0.12) {
                 const ballCenterY = ballRect.top + ballRect.height / 2;
                 const paddleCenterY = paddleRect.top + paddleRect.height / 2;
-                
                 if (ballCenterY < paddleCenterY - offset) {
                     opponentPosY = Math.max(opponentPosY - opponentSpeed, minY);
                 }
@@ -38,7 +32,6 @@ export function updateOpponentPosition()
                     opponentPosY = Math.min(opponentPosY + opponentSpeed, maxY);
                 }
                 opponentPaddle.style.transform = `translateY(calc(-45px + ${opponentPosY}px))`;
-            
         }
     }
     opponentAnimationId = requestAnimationFrame(updateOpponentPosition);

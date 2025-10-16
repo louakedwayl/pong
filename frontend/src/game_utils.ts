@@ -10,6 +10,8 @@ export const button2 = document.querySelector("button.language") as HTMLButtonEl
 export const scoreLeft = document.querySelector(".score") as HTMLElement;
 export const scoreRight = document.querySelector(".score.right") as HTMLElement;
 
+export let pause :boolean = false;
+
 // Key state
 export const keys = {
   ArrowUp: false,
@@ -46,7 +48,7 @@ if (event.key === "ArrowUp" || event.key === "ArrowDown") {
     keys[event.key] = false;
     event.preventDefault();
 }});
-        
+
 export function new_game_animation()
 {
     return new Promise<void>((resolve) => 
@@ -88,8 +90,6 @@ export function handlerBack(restartGame: () => Promise<void>)
     {
         if (pause == true)
             pause = false;
-
-
         playerPaddle.classList.remove("blink");
         nav.removeChild(buttonGamePause);
         nav.removeChild(buttonGameBack);
@@ -98,7 +98,6 @@ export function handlerBack(restartGame: () => Promise<void>)
         // ✅ Réinitialiser les scores
         scoreLeft.textContent = "0";
         scoreRight.textContent = "0";
-
         if (animationId)
             cancelAnimationFrame(animationId);
         if (ballAnimationId) // ✅ Maintenant ballAnimationId est utilisé
@@ -120,7 +119,6 @@ export function handlerBack(restartGame: () => Promise<void>)
     });
 }
 
-export let pause :boolean = false;
 
 export function handlerPause() 
 {

@@ -2,15 +2,12 @@ import {scoreLeft, scoreRight} from "./game_utils.js";
 import { playerPaddle } from "./paddle.js";
 import { opponentPaddle } from "./opponent.js";
 
-
-
 export const ball = document.querySelector(".ball") as HTMLElement;
 export let ballX = 0;
 export let ballY = 0;
-export let ballSpeedX = -4; // ✅ Commence déjà à -3
-export let ballSpeedY = 4;  // ✅ Commence déjà à 3
+export let ballSpeedX = -5; // ✅ Commence déjà à -3
+export let ballSpeedY = 5;  // ✅ Commence déjà à 3
 export let ballAnimationId: number | null = null;
-
 export const pongScreen = document.querySelector(".pong-screen") as HTMLElement;
 
 

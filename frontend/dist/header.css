@@ -3,7 +3,7 @@ header{
   grid-column-start: 2;
   grid-column-end: 12;
   grid-row-start: 1;
-  grid-row-end: 2;   
+  grid-row-end: 2;
   align-items: center; /* aligne verticalement au centre */
   justify-content: space-between; /* espace entre logo et nav */
 }
@@ -12,7 +12,7 @@ header{
 {
   position: relative;
   top: 30px;
-  padding-right: 60px 
+  padding-right: 60px
 }
 
 nav
