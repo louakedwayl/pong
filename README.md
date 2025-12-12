@@ -1,5 +1,5 @@
 # 🏓 Pong
-A classic Pong game developed in TypeScript with intelligent opponent AI.
+A classic Pong game developed in TypeScript with intelligent opponent AI and a multilingual module.
 
 <p align="center">
   <img src="images/Pong_layout.png" alt="Pong Layout">
